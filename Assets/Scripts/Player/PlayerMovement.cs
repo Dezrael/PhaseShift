@@ -4,26 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private new Rigidbody2D rigidbody;
     [SerializeField] private float speed = 20f;
-    [SerializeField] private float jumpPower = 100f;
+    private PlayerController playerController;
 
-    void Start()
+    private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        playerController = GetComponent<PlayerController>();
     }
 
-    
     void FixedUpdate()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
-    }
-
-    private void Update()
-    {
-        if (Input.GetButtonDown("Jump"))
+        if(playerController.isMoving)
         {
-            rigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
     }
 }
