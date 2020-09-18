@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,10 +32,5 @@ public class PlayerController : MonoBehaviour
     public void changeEnergy(float amount)
     {
         energy = amount;
-    }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

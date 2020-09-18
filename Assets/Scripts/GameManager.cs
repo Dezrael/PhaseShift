@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public ScoreUI scoreUI;
     [SerializeField] public EnergyUI energyUI;
     [SerializeField] public PlayerFade playerFade;
+    [SerializeField] public GameOverUI gameOverUI;
 
     private void Awake()
     {
@@ -16,6 +18,8 @@ public class GameManager : MonoBehaviour
         Obstacle.ObstacleTrigger += ObstacleTrigger;
         EnergyPU.EnergyPickedUp += EnergyPickedUp;
         playerFade.energyChanged += EnergyChanged;
+        gameOverUI.restartGame += RestartGame;
+        gameOverUI.mainMenu += MainMenu;
     }
 
     private void OnDestroy()
@@ -24,6 +28,8 @@ public class GameManager : MonoBehaviour
         Obstacle.ObstacleTrigger -= ObstacleTrigger;
         EnergyPU.EnergyPickedUp -= EnergyPickedUp;
         playerFade.energyChanged -= EnergyChanged;
+        gameOverUI.restartGame -= RestartGame;
+        gameOverUI.mainMenu -= MainMenu;
     }
 
     public void TakeCoin(int score)
@@ -36,8 +42,7 @@ public class GameManager : MonoBehaviour
     {
         if(!canFaded || (canFaded && !playerController.isFaded))
         {
-            playerController.Restart();
-            scoreUI.SetScore(0);
+            GameOver();
         }
     }
 
@@ -51,5 +56,23 @@ public class GameManager : MonoBehaviour
     {
         energyUI.SetEnergy(energy);
         playerController.changeEnergy(energy);
+    }
+
+    private void GameOver()
+    {
+        Time.timeScale = 0;
+        gameOverUI.Activate();
+    }
+
+    private void RestartGame()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void MainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
     }
 }
