@@ -11,12 +11,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] public EnergyUI energyUI;
     [SerializeField] public PlayerFade playerFade;
     [SerializeField] public GameOverUI gameOverUI;
+    [SerializeField] public SpeedUI SpeedUI;
 
     private void Awake()
     {
         Coins.TakeCoin += TakeCoin;
         Obstacle.ObstacleTrigger += ObstacleTrigger;
         EnergyPU.EnergyPickedUp += EnergyPickedUp;
+        SpeedPU.SpeedPickedUp += SpeedPickedUp;
         playerFade.energyChanged += EnergyChanged;
         gameOverUI.restartGame += RestartGame;
         gameOverUI.mainMenu += MainMenu;
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
         Coins.TakeCoin -= TakeCoin;
         Obstacle.ObstacleTrigger -= ObstacleTrigger;
         EnergyPU.EnergyPickedUp -= EnergyPickedUp;
+        SpeedPU.SpeedPickedUp -= SpeedPickedUp;
         playerFade.energyChanged -= EnergyChanged;
         gameOverUI.restartGame -= RestartGame;
         gameOverUI.mainMenu -= MainMenu;
@@ -52,6 +55,20 @@ public class GameManager : MonoBehaviour
         energyUI.SetEnergy(playerController.energy);
     }
 
+    public void SpeedPickedUp(float speed, float time)
+    {
+        if(speed > playerController.baseSpeed)
+        {
+            SpeedUI.SetText("SpeedUP", Color.yellow);
+        } else
+        {
+            SpeedUI.SetText("SpeedSlow", Color.red);
+        }
+        StopCoroutine("SpeedChange");
+        playerController.setDefaultSpeed();
+        StartCoroutine(SpeedChange(speed, time));
+    }
+
     public void EnergyChanged(float energy)
     {
         energyUI.SetEnergy(energy);
@@ -60,6 +77,8 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        SpeedUI.HideText();
+        StopCoroutine("SpeedChange");
         Time.timeScale = 0;
         gameOverUI.Activate();
     }
@@ -74,5 +93,14 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    IEnumerator SpeedChange(float speed, float time)
+    {
+        playerController.changeSpeed(speed);
+        yield return new WaitForSeconds(time);
+        playerController.setDefaultSpeed();
+        SpeedUI.HideText();
+        yield return null;
     }
 }

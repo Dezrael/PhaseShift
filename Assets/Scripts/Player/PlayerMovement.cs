@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 20f;
     private PlayerController playerController;
 
     private void Awake()
@@ -16,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(playerController.isMoving)
         {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
+            transform.Translate(Vector2.right * playerController.speed * Time.deltaTime);
         }
     }
 }

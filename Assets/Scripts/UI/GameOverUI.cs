@@ -8,15 +8,16 @@ public class GameOverUI : MonoBehaviour
 {
     public event Action restartGame;
     public event Action mainMenu;
+    [SerializeField] private GameObject panel;
 
     private void Awake()
     {
-        gameObject.SetActive(false);
+        panel.SetActive(false);
     }
 
     public void Activate()
     {
-        gameObject.SetActive(true);
+        panel.SetActive(true);
     }
 
     public void RestartGame()
