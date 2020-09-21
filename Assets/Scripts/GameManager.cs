@@ -59,12 +59,12 @@ public class GameManager : MonoBehaviour
     {
         if(speed > playerController.baseSpeed)
         {
-            SpeedUI.SetText("SpeedUP", Color.yellow);
+            SpeedUI.SetText("SpeedUP", Color.yellow, time);
         } else
         {
-            SpeedUI.SetText("SpeedSlow", Color.red);
+            SpeedUI.SetText("SpeedSlow", Color.red, time);
         }
-        StopCoroutine("SpeedChange");
+        StopAllCoroutines();
         playerController.setDefaultSpeed();
         StartCoroutine(SpeedChange(speed, time));
     }

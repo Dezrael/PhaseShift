@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,6 @@ public class EnergyUI : MonoBehaviour
 
     public void SetEnergy(float energy)
     {
-        energyText.text = string.Format("Energy: {0}", energy);
+        energyText.text = string.Format("Energy: {0}", Math.Round(energy));
     }
 }

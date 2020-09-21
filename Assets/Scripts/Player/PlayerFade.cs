@@ -8,6 +8,8 @@ public class PlayerFade : MonoBehaviour
     private PlayerController playerController;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private float energyLoss = 20;
+    [SerializeField] private float fadeAlpha = 0.4f;
+    [SerializeField] private float normalAlpha = 1;
     public event Action<float> energyChanged;
 
     void Start()
@@ -32,7 +34,7 @@ public class PlayerFade : MonoBehaviour
         playerController.isFaded = true;
         while (playerController.isFaded && playerController.energy > 0)
         {
-            spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+            spriteRenderer.color = ChangeAlpha(spriteRenderer.color, fadeAlpha);
             energyChanged(Mathf.Max(playerController.energy - energyLoss * Time.deltaTime, 0));
             yield return null;
             if (Input.GetKeyDown(KeyCode.M))
@@ -41,7 +43,12 @@ public class PlayerFade : MonoBehaviour
             }
         }
         playerController.isFaded = false;
-        spriteRenderer.color = new Color(1, 1, 1, 1);
+        spriteRenderer.color = ChangeAlpha(spriteRenderer.color, normalAlpha);
         yield return null;
+    }
+
+    private Color ChangeAlpha(Color color, float opacity)
+    {
+        return new Color(color.r, color.g, color.b, opacity);
     }
 }
