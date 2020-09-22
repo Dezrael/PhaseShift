@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fireball : MonoBehaviour
@@ -12,7 +11,7 @@ public class Fireball : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.velocity = transform.right * speed;
-        StartCoroutine("DestroyOnTime");
+        StartCoroutine(DestroyOnTime());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

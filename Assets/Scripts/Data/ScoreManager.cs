@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "BestScore", menuName = "ScriptableObjects/BestScoreSO")]
 public class ScoreManager : ScriptableObject

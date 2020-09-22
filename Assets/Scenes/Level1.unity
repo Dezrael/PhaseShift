@@ -332,6 +332,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e825a5a4d80bc0478422c861da7f838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restartGame:
+    m_PersistentCalls:
+      m_Calls: []
+  mainMenu:
+    m_PersistentCalls:
+      m_Calls: []
   panel: {fileID: 644315560}
 --- !u!1001 &224119110
 PrefabInstance:
@@ -1941,11 +1947,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9181963874801698087, guid: 86f1718dddbcced44b6aa89816f01422, type: 3}
       propertyPath: speed
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9181963874801698087, guid: 86f1718dddbcced44b6aa89816f01422, type: 3}
       propertyPath: baseSpeed
-      value: 30
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181963874801698087, guid: 86f1718dddbcced44b6aa89816f01422, type: 3}
+      propertyPath: isMoving
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181963874801698087, guid: 86f1718dddbcced44b6aa89816f01422, type: 3}
+      propertyPath: canJump
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86f1718dddbcced44b6aa89816f01422, type: 3}

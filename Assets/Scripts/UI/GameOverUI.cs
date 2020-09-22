@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class GameOverUI : MonoBehaviour
 {
-    public event Action restartGame;
-    public event Action mainMenu;
+    public UnityEvent restartGame = new UnityEvent();
+    public UnityEvent mainMenu = new UnityEvent();
     [SerializeField] private GameObject panel;
 
     private void Awake()
@@ -22,11 +19,11 @@ public class GameOverUI : MonoBehaviour
 
     public void RestartGame()
     {
-        restartGame();
+        restartGame?.Invoke();
     }
 
     public void MainMenu()
     {
-        mainMenu();
+        mainMenu?.Invoke();
     }
 }

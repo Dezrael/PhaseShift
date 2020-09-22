@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class Obstacle : MonoBehaviour
 {
-    public static event Action<bool> ObstacleTrigger;
     [SerializeField] private bool canFaded = true;
+    public static UnityEvent<bool> ObstacleTrigger = new UnityEvent<bool>();
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            ObstacleTrigger(canFaded);
+            ObstacleTrigger?.Invoke(canFaded);
         }
     }
 }

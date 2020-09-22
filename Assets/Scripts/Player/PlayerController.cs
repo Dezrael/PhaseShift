@@ -2,42 +2,22 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public int score;
-    public float energy;
-    public bool isFaded;
-    public bool isMoving;
-    public bool canJump;
-    public float baseSpeed;
-    public float speed;
+    [SerializeField] public int score = 0;
+    [SerializeField] public float energy = 100.0f;
+    [SerializeField] public bool isFaded = false;
+    [SerializeField] public bool isMoving = true;
+    [SerializeField] public bool canJump = true;
+    [SerializeField] public float baseSpeed = 20.0f;
+    [SerializeField] public float speed = 20.0f;
 
-    private void Awake()
-    {
-        speed = baseSpeed = 20.0f;
-        score = 0;
-        energy = 100.0f;
-        isFaded = false;
-        isMoving = true;
-        canJump = true;
-    }
-
-    public void addScore(int amount)
+    public void AddScore(int amount)
     {
         score += amount;
     }
 
-    public void addEnergy(float amount)
+    public void AddEnergy(float amount)
     {
         energy = energy + amount < 100 ? energy + amount : 100;
-    }
-
-    public void changeEnergy(float amount)
-    {
-        energy = amount;
-    }
-
-    public void changeSpeed(float value)
-    {
-        speed = value;
     }
 
     public void setDefaultSpeed()

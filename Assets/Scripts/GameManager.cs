@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,13 +16,14 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         bestScoreUI.SetScore(scoreManager.bestScore);
-        Coins.TakeCoin += TakeCoin;
-        Obstacle.ObstacleTrigger += ObstacleTrigger;
-        EnergyPU.EnergyPickedUp += EnergyPickedUp;
-        SpeedPU.SpeedPickedUp += SpeedPickedUp;
-        playerFade.energyChanged += EnergyChanged;
-        gameOverUI.restartGame += RestartGame;
-        gameOverUI.mainMenu += MainMenu;
+
+        Coins.TakeCoin.AddListener(TakeCoin);
+        Obstacle.ObstacleTrigger.AddListener(ObstacleTrigger);
+        EnergyPU.EnergyPickedUp.AddListener(EnergyPickedUp);
+        SpeedPU.SpeedPickedUp.AddListener(SpeedPickedUp);
+        playerFade.energyChanged.AddListener(EnergyChanged);
+        gameOverUI.restartGame.AddListener(RestartGame);
+        gameOverUI.mainMenu.AddListener(MainMenu);
     }
 
     private void Update()
@@ -39,13 +37,14 @@ public class GameManager : MonoBehaviour
     private void OnDestroy()
     {
         scoreManager.UpdateBestScore(playerController.score);
-        Coins.TakeCoin -= TakeCoin;
-        Obstacle.ObstacleTrigger -= ObstacleTrigger;
-        EnergyPU.EnergyPickedUp -= EnergyPickedUp;
-        SpeedPU.SpeedPickedUp -= SpeedPickedUp;
-        playerFade.energyChanged -= EnergyChanged;
-        gameOverUI.restartGame -= RestartGame;
-        gameOverUI.mainMenu -= MainMenu;
+
+        Coins.TakeCoin.RemoveListener(TakeCoin);
+        Obstacle.ObstacleTrigger.RemoveListener(ObstacleTrigger);
+        EnergyPU.EnergyPickedUp.RemoveListener(EnergyPickedUp);
+        SpeedPU.SpeedPickedUp.RemoveListener(SpeedPickedUp);
+        playerFade.energyChanged.RemoveListener(EnergyChanged);
+        gameOverUI.restartGame.RemoveListener(RestartGame);
+        gameOverUI.mainMenu.RemoveListener(MainMenu);
     }
 
     private void OnApplicationQuit()
@@ -53,9 +52,9 @@ public class GameManager : MonoBehaviour
         scoreManager.UpdateBestScore(playerController.score);
     }
 
-    public void TakeCoin(int score)
+    private void TakeCoin(int score)
     {
-        playerController.addScore(score);
+        playerController.AddScore(score);
         scoreUI.SetScore(playerController.score);
         if(playerController.score > scoreManager.bestScore)
         {
@@ -63,7 +62,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ObstacleTrigger(bool canFaded)
+    private void ObstacleTrigger(bool canFaded)
     {
         if(!canFaded || (canFaded && !playerController.isFaded))
         {
@@ -71,13 +70,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void EnergyPickedUp(float energy)
+    private void EnergyPickedUp(float energy)
     {
-        playerController.addEnergy(energy);
+        playerController.AddEnergy(energy);
         energyUI.SetEnergy(playerController.energy);
     }
 
-    public void SpeedPickedUp(float speed, float time)
+    private void SpeedPickedUp(float speed, float time)
     {
         if(speed > playerController.baseSpeed)
         {
@@ -91,10 +90,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpeedChange(speed, time));
     }
 
-    public void EnergyChanged(float energy)
+    private void EnergyChanged(float energy)
     {
         energyUI.SetEnergy(energy);
-        playerController.changeEnergy(energy);
+        playerController.energy = energy;
     }
 
     private void GameOver()
@@ -120,7 +119,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpeedChange(float speed, float time)
     {
-        playerController.changeSpeed(speed);
+        playerController.speed = speed;
         yield return new WaitForSeconds(time);
         playerController.setDefaultSpeed();
         SpeedUI.HideText();

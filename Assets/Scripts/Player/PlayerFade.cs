@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerFade : MonoBehaviour
 {
@@ -10,7 +9,7 @@ public class PlayerFade : MonoBehaviour
     [SerializeField] private float energyLoss = 20;
     [SerializeField] private float fadeAlpha = 0.4f;
     [SerializeField] private float normalAlpha = 1;
-    public event Action<float> energyChanged;
+    public UnityEvent<float> energyChanged = new UnityEvent<float>();
     private KeyCode fadeKey = KeyCode.M;
 
     void Start()
@@ -36,7 +35,7 @@ public class PlayerFade : MonoBehaviour
         while (playerController.isFaded && playerController.energy > 0)
         {
             spriteRenderer.color = ChangeAlpha(spriteRenderer.color, fadeAlpha);
-            energyChanged(Mathf.Max(playerController.energy - energyLoss * Time.deltaTime, 0));
+            energyChanged?.Invoke(Mathf.Max(playerController.energy - energyLoss * Time.deltaTime, 0));
             yield return null;
             if (Input.GetKeyDown(fadeKey))
             {

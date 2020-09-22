@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class Coins : MonoBehaviour
 {
     [SerializeField] private int score;
-    public static event Action<int> TakeCoin;
+    public static UnityEvent<int> TakeCoin = new UnityEvent<int>();
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            TakeCoin(score);
+            TakeCoin?.Invoke(score);
             Destroy(gameObject);
         }
     }

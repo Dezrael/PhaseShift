@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class SpeedPU : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float time;
-    public static event Action<float, float> SpeedPickedUp;
+    public static UnityEvent<float, float> SpeedPickedUp = new UnityEvent<float, float>();
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SpeedPickedUp(speed, time);
+            SpeedPickedUp?.Invoke(speed, time);
             Destroy(gameObject);
         }
     }

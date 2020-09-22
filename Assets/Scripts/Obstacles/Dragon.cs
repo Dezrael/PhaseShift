@@ -1,16 +1,15 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Dragon : MonoBehaviour
 {
     [SerializeField] private GameObject fireballPrefab;
-    [SerializeField] private float reloadTime;
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private float reloadTime;
 
     void Start()
     {
-        StartCoroutine("CastFireball");
+        StartCoroutine(CastFireball());
     }
 
     private IEnumerator CastFireball()
