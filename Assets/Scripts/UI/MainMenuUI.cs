@@ -8,7 +8,7 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] BestScoreUI bestScore;
     [SerializeField] private ScoreManager scoreManager;
 
-    private void Start()
+    private void Awake()
     {
         bestScore.SetScore(scoreManager.bestScore);
     }

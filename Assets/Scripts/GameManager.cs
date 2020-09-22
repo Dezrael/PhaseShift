@@ -14,11 +14,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] public PlayerFade playerFade;
     [SerializeField] public GameOverUI gameOverUI;
     [SerializeField] public SpeedUI SpeedUI;
-    private ScoreManager scoreManager;
+    [SerializeField] public ScoreManager scoreManager;
 
     private void Start()
     {
-        scoreManager = FindObjectOfType<ScoreManager>();
         bestScoreUI.SetScore(scoreManager.bestScore);
         Coins.TakeCoin += TakeCoin;
         Obstacle.ObstacleTrigger += ObstacleTrigger;
@@ -101,7 +100,7 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         SpeedUI.HideText();
-        StopCoroutine("SpeedChange");
+        StopAllCoroutines();
         Time.timeScale = 0;
         gameOverUI.Activate();
         playerController.DisableCharacter();

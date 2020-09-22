@@ -11,6 +11,7 @@ public class PlayerFade : MonoBehaviour
     [SerializeField] private float fadeAlpha = 0.4f;
     [SerializeField] private float normalAlpha = 1;
     public event Action<float> energyChanged;
+    private KeyCode fadeKey = KeyCode.M;
 
     void Start()
     {
@@ -20,11 +21,11 @@ public class PlayerFade : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M) && !playerController.isFaded)
+        if (Input.GetKeyDown(fadeKey) && !playerController.isFaded)
         {
             if(playerController.energy > 0)
             {
-                StartCoroutine("Fade");
+                StartCoroutine(Fade());
             }
         }
     }
@@ -37,7 +38,7 @@ public class PlayerFade : MonoBehaviour
             spriteRenderer.color = ChangeAlpha(spriteRenderer.color, fadeAlpha);
             energyChanged(Mathf.Max(playerController.energy - energyLoss * Time.deltaTime, 0));
             yield return null;
-            if (Input.GetKeyDown(KeyCode.M))
+            if (Input.GetKeyDown(fadeKey))
             {
                 playerController.isFaded = false;
             }

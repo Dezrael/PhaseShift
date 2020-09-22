@@ -228,6 +228,7 @@ MonoBehaviour:
   playerFade: {fileID: 5080230}
   gameOverUI: {fileID: 165896174}
   SpeedUI: {fileID: 1018375845}
+  scoreManager: {fileID: 11400000, guid: 945aa306ccd502e42a0991a1d4f90d21, type: 2}
 --- !u!4 &106560898
 Transform:
   m_ObjectHideFlags: 0
@@ -558,7 +559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc78f1e977edead478e8039268d88320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bestScoreText: {fileID: 476606390}
 --- !u!114 &476606390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,6 +635,7 @@ MonoBehaviour:
   chunkPrefabs:
   - {fileID: 5978005826607529040, guid: 3dde2e351f5a14749a401e33a30e216b, type: 3}
   - {fileID: 3478130808627867621, guid: b7d62145bcfb1c046aed04e6f971675c, type: 3}
+  - {fileID: 6299697467343360899, guid: 3a366816abf3a7340a1dcbd4dd87a669, type: 3}
   spawnOffset: 40
   chunksCount: 2
 --- !u!4 &477402458
