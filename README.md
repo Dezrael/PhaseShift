@@ -2,8 +2,9 @@
 
 My first Unity project - a simple 2D runner
 
-[![Screen1.png](https://i.postimg.cc/YqxLGpMF/Screen1.png)](https://postimg.cc/0bbyh165)
-[![Screen2.png](https://i.postimg.cc/YSTvK0f5/Screen2.png)](https://postimg.cc/Y4frQpPR)
+<img width="80%" src="https://i.postimg.cc/YqxLGpMF/Screen1.png">
+
+<img width="80%" src="https://i.postimg.cc/YSTvK0f5/Screen2.png">
 
 
 ### Assets
