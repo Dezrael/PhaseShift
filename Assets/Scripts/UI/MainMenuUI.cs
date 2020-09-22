@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuUI : MonoBehaviour
 {
+    [SerializeField] BestScoreUI bestScore;
+    [SerializeField] private ScoreManager scoreManager;
+
+    private void Start()
+    {
+        bestScore.SetScore(scoreManager.bestScore);
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene(1);

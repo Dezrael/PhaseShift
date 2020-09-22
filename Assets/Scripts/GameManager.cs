@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,13 +9,17 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] public PlayerController playerController;
     [SerializeField] public ScoreUI scoreUI;
+    [SerializeField] public BestScoreUI bestScoreUI;
     [SerializeField] public EnergyUI energyUI;
     [SerializeField] public PlayerFade playerFade;
     [SerializeField] public GameOverUI gameOverUI;
     [SerializeField] public SpeedUI SpeedUI;
+    private ScoreManager scoreManager;
 
-    private void Awake()
+    private void Start()
     {
+        scoreManager = FindObjectOfType<ScoreManager>();
+        bestScoreUI.SetScore(scoreManager.bestScore);
         Coins.TakeCoin += TakeCoin;
         Obstacle.ObstacleTrigger += ObstacleTrigger;
         EnergyPU.EnergyPickedUp += EnergyPickedUp;
@@ -24,8 +29,17 @@ public class GameManager : MonoBehaviour
         gameOverUI.mainMenu += MainMenu;
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            RestartGame();
+        }
+    }
+
     private void OnDestroy()
     {
+        scoreManager.UpdateBestScore(playerController.score);
         Coins.TakeCoin -= TakeCoin;
         Obstacle.ObstacleTrigger -= ObstacleTrigger;
         EnergyPU.EnergyPickedUp -= EnergyPickedUp;
@@ -35,10 +49,19 @@ public class GameManager : MonoBehaviour
         gameOverUI.mainMenu -= MainMenu;
     }
 
+    private void OnApplicationQuit()
+    {
+        scoreManager.UpdateBestScore(playerController.score);
+    }
+
     public void TakeCoin(int score)
     {
         playerController.addScore(score);
         scoreUI.SetScore(playerController.score);
+        if(playerController.score > scoreManager.bestScore)
+        {
+            bestScoreUI.SetScore(playerController.score);
+        }
     }
 
     public void ObstacleTrigger(bool canFaded)
