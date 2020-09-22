@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
         StopCoroutine("SpeedChange");
         Time.timeScale = 0;
         gameOverUI.Activate();
+        playerController.DisableCharacter();
     }
 
     private void RestartGame()

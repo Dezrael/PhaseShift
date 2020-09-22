@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 215596178745162365}
   - component: {fileID: 215596178745162364}
-  - component: {fileID: 8604097920853658827}
   - component: {fileID: 4504112689375871135}
   m_Layer: 0
-  m_Name: DragonLeft
+  m_Name: Dragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,32 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8604097920853658827
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215596178745162339}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.06719613, y: -0.018326402}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.36, y: 2.96}
-    newSize: {x: 3.36, y: 2.96}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.2256074, y: 2.8744776}
-  m_EdgeRadius: 0
 --- !u!114 &4504112689375871135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 7340966089594142741, guid: c8dc0d72580816e47adcb712cc47be9f, type: 3}
-  reloadTime: 1
+  reloadTime: 2
   spawnPoint: {fileID: 7667867801518041044}
 --- !u!1 &4522936063227042578
 GameObject:

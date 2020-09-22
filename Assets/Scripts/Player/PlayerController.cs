@@ -44,4 +44,9 @@ public class PlayerController : MonoBehaviour
     {
         speed = baseSpeed;
     }
+
+    public void DisableCharacter()
+    {
+        gameObject.SetActive(false);
+    }
 }
