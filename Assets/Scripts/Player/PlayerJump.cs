@@ -2,7 +2,7 @@
 
 public class PlayerJump : MonoBehaviour
 {
-    [SerializeField] private float jumpPower = 100f;
+    [SerializeField] private float jumpPower = 95f;
     private new Rigidbody2D rigidbody;
     private PlayerController playerController;
 

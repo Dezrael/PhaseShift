@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public bool isFaded = false;
     [SerializeField] public bool isMoving = true;
     [SerializeField] public bool canJump = true;
-    [SerializeField] public float baseSpeed = 20.0f;
-    [SerializeField] public float speed = 20.0f;
+    [SerializeField] public float baseSpeed = 15.0f;
+    [SerializeField] public float speed = 15.0f;
 
     public void AddScore(int amount)
     {

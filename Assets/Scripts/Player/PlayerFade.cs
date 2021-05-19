@@ -6,7 +6,7 @@ public class PlayerFade : MonoBehaviour
 {
     private PlayerController playerController;
     private SpriteRenderer spriteRenderer;
-    [SerializeField] private float energyLoss = 20;
+    [SerializeField] private float energyLoss = 19;
     [SerializeField] private float fadeAlpha = 0.4f;
     [SerializeField] private float normalAlpha = 1;
     public UnityEvent<float> energyChanged = new UnityEvent<float>();
