@@ -52,6 +52,16 @@ public class GameManager : MonoBehaviour
         scoreManager.UpdateBestScore(playerController.score);
     }
 
+    private void TakeCoin(int score)
+    {
+        playerController.AddScore(score);
+        scoreUI.SetScore(playerController.score);
+        if(playerController.score > scoreManager.bestScore)
+        {
+            bestScoreUI.SetScore(playerController.score);
+        }
+    }
+
     private void ObstacleTrigger(bool canFaded)
     {
         if(!canFaded || (canFaded && !playerController.isFaded))
