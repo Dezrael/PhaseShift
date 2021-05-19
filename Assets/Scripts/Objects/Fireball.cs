@@ -4,7 +4,7 @@ using UnityEngine;
 public class Fireball : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
-    [SerializeField] private float lifeTime = 5f;
+    [SerializeField] private float lifeTime = 4f;
     private new Rigidbody2D rigidbody;
 
     void Start()
