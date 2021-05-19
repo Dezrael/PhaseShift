@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class EnergyPU : MonoBehaviour
 {
-    [SerializeField] private float energy = 20f;
+    [SerializeField] private float energy = 19f;
     public static UnityEvent<float> EnergyPickedUp = new UnityEvent<float>();
 
     private void OnTriggerEnter2D(Collider2D collision)
